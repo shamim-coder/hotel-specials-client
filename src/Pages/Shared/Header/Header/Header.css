@@ -1,0 +1,6 @@
+.header {
+    background-image: url(../../../../Assets/header-bg.jpg);
+    background-blend-mode: multiply;
+    background-size: cover;
+    height: 100vh;
+}

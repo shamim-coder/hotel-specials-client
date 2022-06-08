@@ -1,0 +1,38 @@
+[
+    {
+        "_id": "62a0aa1962fe14c95a02c5f7",
+        "icon": "utensils",
+        "title": "Restaurant",
+        "paragraph": "Usage of internet is becoming more common due to repaid advancement of technology and power."
+    },
+    {
+        "_id": "62a0aa1910cc2854b2b0c5af",
+        "icon": "person-biking",
+        "title": "Spots Club",
+        "paragraph": "Usage of internet is becoming more common due to repaid advancement of technology and power."
+    },
+    {
+        "_id": "62a0aa19116524a1f0a925fc",
+        "icon": "person-swimming",
+        "title": "Swimming Pool",
+        "paragraph": "Usage of internet is becoming more common due to repaid advancement of technology and power."
+    },
+    {
+        "_id": "62a0aa195f76f1050c0de9dc",
+        "icon": "car",
+        "title": "Rent a Car",
+        "paragraph": "Usage of internet is becoming more common due to repaid advancement of technology and power."
+    },
+    {
+        "_id": "62a0aa19a9fac3b3fe3bde12",
+        "icon": "dumbbell",
+        "title": "Gymnasium",
+        "paragraph": "Usage of internet is becoming more common due to repaid advancement of technology and power."
+    },
+    {
+        "_id": "62a0aa196c03456e8459b167",
+        "icon": "champagne-glasses",
+        "title": "Bar",
+        "paragraph": "Usage of internet is becoming more common due to repaid advancement of technology and power."
+    }
+]

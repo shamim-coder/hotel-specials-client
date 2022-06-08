@@ -1,0 +1,50 @@
+[
+    {
+        "_id": "62a09152a4ea09175d844366",
+        "price": 250,
+        "picture": "https://i.ibb.co/xDtyspS/room-5.jpg",
+        "type": "Double Deluxe Room"
+    },
+    {
+        "_id": "62a09152948f1ce3473ae4fe",
+        "price": 200,
+        "picture": "https://i.ibb.co/fXs1xNC/room-6.jpg",
+        "type": "Single Deluxe Room"
+    },
+    {
+        "_id": "62a09152d0c221d9d0435412",
+        "price": 750,
+        "picture": "https://i.ibb.co/xSfSRqY/room-8.jpg",
+        "type": "Honeymoon Suit"
+    },
+    {
+        "_id": "62a09152f89688f49cf4bcae",
+        "price": 200,
+        "picture": "https://i.ibb.co/nfHpTz6/room-1.jpg",
+        "type": "Economy Double"
+    },
+    {
+        "_id": "62a09152ebbc78ac937c05e8",
+        "price": 2000,
+        "picture": "https://i.ibb.co/b61WJcd/room-2.jpg",
+        "type": "Conference Room"
+    },
+    {
+        "_id": "62a09152af4ccd5c10acfc77",
+        "price": 2850,
+        "picture": "https://i.ibb.co/MZZhffx/room-4.jpg",
+        "type": "Wedding Venue"
+    },
+    {
+        "_id": "62a0915229ced7c986d53d3a",
+        "price": 1550,
+        "picture": "https://i.ibb.co/Mph5HvQ/room-9.jpg",
+        "type": "Meeting Room"
+    },
+    {
+        "_id": "62a09152051801e328c3c932",
+        "price": 450,
+        "picture": "https://i.ibb.co/h77N753/room-3.jpg",
+        "type": "Couple Room"
+    }
+]

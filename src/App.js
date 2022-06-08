@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import Home from "./Pages/Home/Home/Home";
+import Footer from "./Pages/Shared/Footer/Footer";
+import Header from "./Pages/Shared/Header/Header/Header";
+import NotFound from "./Pages/Shared/NotFound/NotFound";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import Login from "./Pages/ManageUser/Login/Login";
+import Registration from "./Pages/ManageUser/Registration/Registration";
+import Accommodation from "./Pages/Home/Accommodation/Accommodation/Accommodation";
+
+library.add(fas);
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <Header></Header>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/accommodation" element={<Accommodation />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/registration" element={<Registration />} />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+            <Footer></Footer>
+        </>
+    );
 }
 
 export default App;

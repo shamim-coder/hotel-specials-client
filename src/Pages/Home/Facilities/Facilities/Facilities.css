@@ -1,0 +1,5 @@
+.facilities-bg {
+    background-image: url(../../../../Assets/facilities-bg.jpg);
+    background-size: cover;
+    background-blend-mode: darken;
+}
