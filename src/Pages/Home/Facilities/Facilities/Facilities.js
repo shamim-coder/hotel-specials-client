@@ -6,7 +6,6 @@ import "./Facilities.css";
 
 const Facilities = () => {
     const [facilities] = useFetchData("Database/facilities.json");
-    console.log(facilities);
 
     return (
         <section className="facilities-bg bg-slate-900/70 pb-24">

@@ -1,8 +1,15 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Logo from "../../../../Assets/logo.png";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../../../Utilities/Firebase/firebase.init";
+import { signOut } from "firebase/auth";
 
 const NavBar = () => {
+    const [user] = useAuthState(auth);
+
+    const navigate = useNavigate();
+
     return (
         <nav className="flex justify-between container items-center mx-auto py-[30px] bg-white px-10">
             <Link to="/">
@@ -36,8 +43,8 @@ const NavBar = () => {
                     </NavLink>
                 </li>
                 <li className="hover:text-primary transition">
-                    <NavLink style={({ isActive }) => (isActive ? { color: "#F58229" } : undefined)} to="/login">
-                        Login
+                    <NavLink onClick={() => (user ? signOut(auth) : navigate("/login"))} style={({ isActive }) => (isActive ? { color: "#F58229" } : undefined)} to="/login">
+                        {user ? "Sign Out" : "Login"}
                     </NavLink>
                 </li>
             </ul>
