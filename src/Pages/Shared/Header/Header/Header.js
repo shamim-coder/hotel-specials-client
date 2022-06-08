@@ -10,7 +10,7 @@ const Header = () => {
 
     return (
         <header className={`${homePath ? "header bg-black/50 flex flex-col justify-between" : null} `}>
-            <NavBar />
+            <NavBar homePath={homePath} />
             {homePath ? <HeaderContents /> : null}
             {homePath ? <SearchBooking /> : null}
         </header>
