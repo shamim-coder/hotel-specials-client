@@ -6,13 +6,14 @@ import SearchBooking from "../SearchBooking/SearchBooking";
 import "./Header.css";
 
 const Header = () => {
-    const homePath = useLocation().pathname === "/";
+    const root = useLocation().pathname === "/";
+    const home = useLocation().pathname === "/home";
 
     return (
-        <header className={`${homePath ? "header bg-black/50 flex flex-col justify-between" : null} `}>
-            <NavBar homePath={homePath} />
-            {homePath ? <HeaderContents /> : null}
-            {homePath ? <SearchBooking /> : null}
+        <header className={`${root || home ? "header bg-black/50 flex flex-col justify-between" : null} `}>
+            <NavBar root={root} home={home} />
+            {root || home ? <HeaderContents /> : null}
+            {root || home ? <SearchBooking /> : null}
         </header>
     );
 };
