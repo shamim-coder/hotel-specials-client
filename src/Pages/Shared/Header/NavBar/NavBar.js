@@ -6,7 +6,7 @@ import auth from "../../../../Utilities/Firebase/firebase.init";
 import { signOut } from "firebase/auth";
 
 const NavBar = ({ home, root }) => {
-    const [user] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
 
     const navigate = useNavigate();
 
@@ -44,7 +44,7 @@ const NavBar = ({ home, root }) => {
                 </li>
                 <li className="hover:text-primary transition">
                     <NavLink onClick={() => (user ? signOut(auth) : navigate("/login"))} style={({ isActive }) => (isActive ? { color: "#F58229" } : undefined)} to="/login">
-                        {user ? "Sign Out" : "Login"}
+                        {user?.displayName != null ? `Sign Out (${user?.displayName})` : "Login"}
                     </NavLink>
                 </li>
             </ul>
