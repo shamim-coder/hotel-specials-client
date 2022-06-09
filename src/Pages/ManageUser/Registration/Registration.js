@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../Utilities/Firebase/firebase.init";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Registration = () => {
     const [errorMessage, setErrorMessage] = useState("");
@@ -10,10 +12,11 @@ const Registration = () => {
     const navigate = useNavigate();
 
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
+    const [updateProfile] = useUpdateProfile(auth);
 
-    const handleCreateUser = (e) => {
+    const handleCreateUser = async (e) => {
         e.preventDefault();
-        const name = e.target.name.value;
+        const displayName = e.target.name.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
         const confirmPassword = e.target.confirmPassword.value;
@@ -21,15 +24,21 @@ const Registration = () => {
         if (password !== confirmPassword) {
             setErrorMessage("Password doesn't match");
             return;
+        } else if (password.length < 6) {
+            setErrorMessage("Use at minimum 6 characters");
+            return;
         } else {
             setErrorMessage("");
+            await createUserWithEmailAndPassword(email, password);
+            await updateProfile({ displayName });
+
+            if (error) {
+                setErrorMessage(error.message);
+            } else {
+                await signOut(auth);
+                navigate("/login");
+            }
         }
-
-        createUserWithEmailAndPassword(email, password);
-
-        signOut(auth);
-
-        navigate("/login");
     };
 
     return (
@@ -45,7 +54,7 @@ const Registration = () => {
                     <input type="password" className="block border border-grey-light w-full p-3 rounded mb-4" name="confirmPassword" placeholder="Confirm Password" required />
                     <p className="text-red-500">{errorMessage}</p>
                     <button type="submit" className="w-full bg-primary hover:bg-primary-500 text-white transition font-semibold px-6 py-3 uppercase text-lg mt-4">
-                        Create Account
+                        {loading ? <FontAwesomeIcon icon={faSpinner} spin /> : "Create Account"}
                     </button>
                 </form>
                 <div className="text-center text-sm text-grey-dark mt-4">
