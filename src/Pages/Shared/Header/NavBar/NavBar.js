@@ -5,13 +5,13 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../../Utilities/Firebase/firebase.init";
 import { signOut } from "firebase/auth";
 
-const NavBar = ({ homePath }) => {
+const NavBar = ({ home, root }) => {
     const [user] = useAuthState(auth);
 
     const navigate = useNavigate();
 
     return (
-        <nav className={`flex justify-between container items-center mx-auto py-[30px] bg-white ${homePath && "px-10"}`}>
+        <nav className={`flex justify-between container items-center mx-auto py-[30px] bg-white ${(root || home) && "px-10"}`}>
             <Link to="/">
                 <img className="w-48" src={Logo} alt="" />
             </Link>
