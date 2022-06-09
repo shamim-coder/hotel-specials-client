@@ -20,6 +20,7 @@ function App() {
             <Header></Header>
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/home" element={<Home />} />
                 <Route path="/accommodation" element={<Accommodation />} />
                 <Route
                     path="/booking/:bookingId"
