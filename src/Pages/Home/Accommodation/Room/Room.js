@@ -8,7 +8,7 @@ const Room = ({ room }) => {
         <div>
             <div className="room-image relative">
                 <img className="w-full h-80 object-cover" src={picture} alt="" />
-                <button onClick={() => navigate(`/booking/${_id}`)} className="absolute bottom-6 right-[50%] translate-x-1/2 bg-primary hover:bg-primary-500 text-white transition font-semibold px-8 py-3 uppercase text-lg mt-10">
+                <button onClick={() => navigate(`/booking/${_id}`)} className="absolute bottom-6 right-[50%] translate-x-1/2 bg-primary hover:bg-primary-500 text-white transition font-semibold px-5 py-3 uppercase text-lg mt-10">
                     Book Now
                 </button>
             </div>

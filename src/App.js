@@ -11,6 +11,9 @@ import Registration from "./Pages/ManageUser/Registration/Registration";
 import Accommodation from "./Pages/Home/Accommodation/Accommodation/Accommodation";
 import Booking from "./Pages/Booking/Booking/Booking";
 import RequireAuth from "./Utilities/RequireAuth/RequireAuth";
+import AddHotel from "./Pages/AddHotel/AddHotel";
+import ManageHotel from "./Pages/ManageHotel/ManageHotel";
+import UpdateHotel from "./Pages/ManageHotel/UpdateHotel";
 
 library.add(fas);
 
@@ -30,6 +33,20 @@ function App() {
                         </RequireAuth>
                     }
                 />
+
+                <Route
+                    path="/manage-hotel"
+                    element={
+                        <RequireAuth>
+                            <ManageHotel />
+                        </RequireAuth>
+                    }
+                >
+                    <Route path="/manage-hotel/update" element={<UpdateHotel />} />
+                    <Route path="/manage-hotel/update" element={<UpdateHotel />} />
+                    <Route path="/manage-hotel/add" element={<AddHotel />} />
+                </Route>
+
                 <Route path="/login" element={<Login />} />
                 <Route path="/registration" element={<Registration />} />
                 <Route path="*" element={<NotFound />} />

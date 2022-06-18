@@ -43,6 +43,11 @@ const NavBar = ({ home, root }) => {
                     </NavLink>
                 </li>
                 <li className="hover:text-primary transition">
+                    <NavLink style={({ isActive }) => (isActive ? { color: "#F58229" } : undefined)} to="/manage-hotel/update">
+                        Manage Hotel
+                    </NavLink>
+                </li>
+                <li className="text-primary">
                     <NavLink onClick={() => (user ? signOut(auth) : navigate("/login"))} style={({ isActive }) => (isActive ? { color: "#F58229" } : undefined)} to="/login">
                         {user?.displayName != null ? `Sign Out (${user?.displayName})` : "Login"}
                     </NavLink>
