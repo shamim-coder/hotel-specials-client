@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useRef } from "react";
 import { useState } from "react";
 import { useFetchData } from "../../Hooks/useFaceData";
 import DeleteModal from "../Shared/Modals/DeleteModal/DeleteModal";
 import UpdateModal from "../Shared/Modals/UpdateModal/UpdateModal";
 
 const UpdateHotel = () => {
-    const [hotels, setHotels] = useFetchData("http://localhost:5000/hotels");
+    const [pageCount, setPageCount] = useState(0);
+    const [size, setSize] = useState(5);
+    const [page, setPage] = useState(0);
+    const [hotels, setHotels] = useState([]);
+
+    const inputPageNumber = useRef(null);
+
+    useEffect(() => {
+        const API = `http://localhost:5000/hotels?page=${page}&size=${size}`;
+        fetch(API)
+            .then((res) => res.json())
+            .then((data) => {
+                setHotels(data);
+            });
+    }, [page, size]);
 
     const [modal, setModal] = useState(false);
     const [updateModal, setUpdateModal] = useState(false);
@@ -31,6 +46,13 @@ const UpdateHotel = () => {
         setUpdateModal(true);
     };
 
+    const [hotelCount] = useFetchData("http://localhost:5000/hotel-count");
+
+    useEffect(() => {
+        const pages = Math.ceil(hotelCount / size);
+        setPageCount(pages);
+    }, [hotelCount, size]);
+
     return (
         <div>
             <div className="bg-white p-8 rounded-md w-full">
@@ -39,7 +61,7 @@ const UpdateHotel = () => {
                 </div>
                 <div>
                     <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                        <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
+                        <div className="inline-block min-h-[515px] min-w-full shadow rounded-lg overflow-hidden">
                             <table className="min-w-full leading-normal">
                                 <thead>
                                     <tr>
@@ -55,19 +77,19 @@ const UpdateHotel = () => {
                                     {hotels.map((hotel, index) => {
                                         return (
                                             <tr key={hotel._id}>
-                                                <td className="px-5 py-5 text-sm">
+                                                <td className="px-5 py-5 ">
                                                     <p className="text-gray-900">{index + 1}</p>
                                                 </td>
                                                 <td className="px-5 py-5 bg-white">
                                                     <p className="text-gray-900">{hotel.type}</p>
                                                 </td>
-                                                <td className="px-5 py-5 text-sm">
+                                                <td className="px-5 py-5">
                                                     <img className="rounded-full w-10 h-10" src={hotel.picture} alt="" />
                                                 </td>
-                                                <td className="px-5 py-5 text-sm">
+                                                <td className="px-5 py-5 ">
                                                     <p className="text-gray-900">${hotel.price}</p>
                                                 </td>
-                                                <td className="px-5 py-5 bg-white text-sm">
+                                                <td className="px-5 py-5 bg-white ">
                                                     <p className="text-gray-900x">
                                                         <button onClick={() => handleUpdate()} className="bg-slate-500 p-2 text-white">
                                                             Update
@@ -75,7 +97,7 @@ const UpdateHotel = () => {
                                                     </p>
                                                 </td>
 
-                                                <td className="px-5 py-5 bg-white text-sm">
+                                                <td className="px-5 py-5 bg-white">
                                                     <button onClick={() => handleDelete(hotel._id)} className="bg-red-600 p-2 text-white">
                                                         Delete
                                                     </button>
@@ -85,12 +107,56 @@ const UpdateHotel = () => {
                                     })}
                                 </tbody>
                             </table>
-                            <div className="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
-                                <span className="text-xs xs:text-sm text-gray-900">Showing 1 to 1 of {hotels.length} Entries</span>
-                                <div className="inline-flex mt-2 xs:mt-0">
-                                    <button className="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-l">Prev</button>
-                                    &nbsp; &nbsp;
-                                    <button className="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-r">Next</button>
+
+                            <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+                                <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                                    <div>
+                                        <p className="text-sm text-gray-700">
+                                            Showing <span className="font-medium">{page + 1}</span> to <span className="font-medium">{pageCount}</span> of <span className="font-medium">{hotelCount}</span> results
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <nav className="relative z-0 inline-flex rounded-md shadow-sm">
+                                            <button className="px-2 py-2 rounded-l-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+                                                <span className="sr-only">Previous</span>
+                                                <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                    <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+                                                </svg>
+                                            </button>
+                                            {[...Array(pageCount).keys()].map((number) => (
+                                                <button
+                                                    onClick={() => {
+                                                        setPage(number);
+                                                        inputPageNumber.current.value = number + 1;
+                                                    }}
+                                                    className={` ${page === number ? "bg-primary text-white" : "bg-white text-gray-500"}  px-4 py-2 border`}
+                                                >
+                                                    {number + 1}
+                                                </button>
+                                            ))}
+
+                                            <input ref={inputPageNumber} onBlur={(e) => setPage(parseInt(e.target.value) - 1)} className="w-10" defaultValue={1} type="text" />
+
+                                            <button className="px-2 py-2 rounded-r-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+                                                <span className="sr-only">Next</span>
+                                                <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                                                </svg>
+                                            </button>
+
+                                            <div className="ml-5">
+                                                <span className="text-sm text-gray-700 mr-3">show per page:</span>
+                                                <select onChange={(e) => setSize(e.target.value)} name="number__of__page" id="number__of__page">
+                                                    <option selected value="5">
+                                                        5
+                                                    </option>
+                                                    <option value="10">10</option>
+                                                    <option value="15">15</option>
+                                                    <option value="20">20</option>
+                                                </select>
+                                            </div>
+                                        </nav>
+                                    </div>
                                 </div>
                             </div>
                         </div>
