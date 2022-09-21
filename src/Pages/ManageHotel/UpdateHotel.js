@@ -1,6 +1,4 @@
-import React, { useEffect } from "react";
-import { useRef } from "react";
-import { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useFetchData } from "../../Hooks/useFaceData";
 import DeleteModal from "../Shared/Modals/DeleteModal/DeleteModal";
 import UpdateModal from "../Shared/Modals/UpdateModal/UpdateModal";
@@ -14,7 +12,7 @@ const UpdateHotel = () => {
     const inputPageNumber = useRef(null);
 
     useEffect(() => {
-        const API = `http://localhost:5000/hotels?page=${page}&size=${size}`;
+        const API = `https://hotel-specials-server.vercel.app/hotels?page=${page}&size=${size}`;
         fetch(API)
             .then((res) => res.json())
             .then((data) => {
@@ -32,7 +30,7 @@ const UpdateHotel = () => {
         const confirm = window.confirm("are you sure?");
 
         if (confirm) {
-            fetch(`http://localhost:5000/delete-hotel/${id}`, {
+            fetch(`https://hotel-specials-server.vercel.app/delete-hotel/${id}`, {
                 method: "DELETE",
             })
                 .then((res) => res.json())
@@ -46,7 +44,7 @@ const UpdateHotel = () => {
         setUpdateModal(true);
     };
 
-    const [hotelCount] = useFetchData("http://localhost:5000/hotel-count");
+    const [hotelCount] = useFetchData("https://hotel-specials-server.vercel.app/hotel-count");
 
     useEffect(() => {
         const pages = Math.ceil(hotelCount / size);

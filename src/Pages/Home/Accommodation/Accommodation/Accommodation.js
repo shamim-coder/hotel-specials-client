@@ -5,7 +5,7 @@ import SectionTop from "../../Shared/SectionTop";
 import Room from "../Room/Room";
 
 const Accommodation = () => {
-    const [rooms] = useFetchData("http://localhost:5000/hotels");
+    const [rooms] = useFetchData("https://hotel-specials-server.vercel.app/hotels");
 
     return (
         <section className="container mx-auto text-center pb-24">

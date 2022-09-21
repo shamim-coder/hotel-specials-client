@@ -1,8 +1,5 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useFetchData } from "../../../Hooks/useFaceData";
 
 const Booking = () => {
     const { bookingId } = useParams();
@@ -12,7 +9,7 @@ const Booking = () => {
     const { type, picture, price } = hotel;
 
     useEffect(() => {
-        fetch(`http://localhost:5000/hotel/${bookingId}`)
+        fetch(`https://hotel-specials-server.vercel.app/hotel/${bookingId}`)
             .then((res) => res.json())
             .then((data) => setHotel(data));
     }, [bookingId]);

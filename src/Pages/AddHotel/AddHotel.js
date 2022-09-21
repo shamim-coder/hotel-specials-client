@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const AddHotel = () => {
@@ -13,7 +12,7 @@ const AddHotel = () => {
     } = useForm();
     const handleAddBooking = (data) => {
         console.log(data);
-        const url = `http://localhost:5000/add-hotel`;
+        const url = `https://hotel-specials-server.vercel.app/add-hotel`;
         fetch(url, {
             method: "POST",
             headers: {
