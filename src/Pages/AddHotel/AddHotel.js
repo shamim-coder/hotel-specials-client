@@ -12,7 +12,7 @@ const AddHotel = () => {
     } = useForm();
     const handleAddBooking = (data) => {
         console.log(data);
-        const url = `https://hotel-specials.onrender.com/hotels/add-hotel`;
+        const url = ` https://hotel-specials.onrender.com/add-hotel`;
         fetch(url, {
             method: "POST",
             headers: {

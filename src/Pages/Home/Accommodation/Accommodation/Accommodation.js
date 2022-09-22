@@ -5,7 +5,7 @@ import SectionTop from "../../Shared/SectionTop";
 import Room from "../Room/Room";
 
 const Accommodation = () => {
-    const [rooms] = useFetchData("https://hotel-specials.onrender.com/hotels/hotels");
+    const [rooms] = useFetchData(" https://hotel-specials.onrender.com/hotels");
 
     return (
         <section className="container mx-auto text-center pb-24">

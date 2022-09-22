@@ -9,7 +9,7 @@ const Booking = () => {
     const { type, picture, price } = hotel;
 
     useEffect(() => {
-        fetch(`https://hotel-specials.onrender.com/hotels/hotel/${bookingId}`)
+        fetch(` https://hotel-specials.onrender.com/hotel/${bookingId}`)
             .then((res) => res.json())
             .then((data) => setHotel(data));
     }, [bookingId]);
