@@ -1,4 +1,4 @@
-# GitHub API
+# Hotel Booking System (Hotel Specials)
 
 Live Site [https://hotel-specials-server.vercel.app](https://hotel-specials-server.vercel.app).
 
@@ -7,8 +7,12 @@ Live Site [https://hotel-specials-server.vercel.app](https://hotel-specials-serv
 -   Reac JS
 -   React Router
 -   Tailwind CSS
--   Vercel (Deploy Server)
+-   Firebase (For Authentication & Deploy Client)
+-   React Firebase Hooks
+-   Express Js (CURD Operations)
+-   MongoDB (Database)
+-   Heroku (Deploy Server)
 -   Font Awesome (Icon)
--   daisyUI
 -   Axios
--   React-loader-spinner
+-   Tostify (Showing success, error, warning message)
+-   JSON Web Token (JWT)
