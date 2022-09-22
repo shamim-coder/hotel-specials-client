@@ -2,7 +2,7 @@ import React from "react";
 import { useFetchData } from "../../../../Hooks/useFaceData";
 
 const DeleteModal = ({ setModal, setConfirm }) => {
-    const [hotels, setHotels] = useFetchData("https://hotel-specials-server.vercel.app/hotels");
+    const [hotels, setHotels] = useFetchData("https://hotel-specials.onrender.com/hotels/hotels");
     const handleDelete = () => {
         setModal(false);
         setConfirm(true);

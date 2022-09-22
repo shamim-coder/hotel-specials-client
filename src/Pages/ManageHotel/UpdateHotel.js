@@ -12,7 +12,7 @@ const UpdateHotel = () => {
     const inputPageNumber = useRef(null);
 
     useEffect(() => {
-        const API = `https://hotel-specials-server.vercel.app/hotels?page=${page}&size=${size}`;
+        const API = `https://hotel-specials.onrender.com/hotels/hotels?page=${page}&size=${size}`;
         fetch(API)
             .then((res) => res.json())
             .then((data) => {
@@ -30,7 +30,7 @@ const UpdateHotel = () => {
         const confirm = window.confirm("are you sure?");
 
         if (confirm) {
-            fetch(`https://hotel-specials-server.vercel.app/delete-hotel/${id}`, {
+            fetch(`https://hotel-specials.onrender.com/hotels/delete-hotel/${id}`, {
                 method: "DELETE",
             })
                 .then((res) => res.json())
@@ -44,7 +44,7 @@ const UpdateHotel = () => {
         setUpdateModal(true);
     };
 
-    const [hotelCount] = useFetchData("https://hotel-specials-server.vercel.app/hotel-count");
+    const [hotelCount] = useFetchData("https://hotel-specials.onrender.com/hotels/hotel-count");
 
     useEffect(() => {
         const pages = Math.ceil(hotelCount / size);

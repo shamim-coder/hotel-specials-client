@@ -12,7 +12,7 @@ const AddHotel = () => {
     } = useForm();
     const handleAddBooking = (data) => {
         console.log(data);
-        const url = `https://hotel-specials-server.vercel.app/add-hotel`;
+        const url = `https://hotel-specials.onrender.com/hotels/add-hotel`;
         fetch(url, {
             method: "POST",
             headers: {
